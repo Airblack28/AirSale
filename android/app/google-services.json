@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "390225675033",
+    "project_id": "airgroup-6bdd4",
+    "storage_bucket": "airgroup-6bdd4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:390225675033:android:d1dd73baa53231f37cbb88",
+        "android_client_info": {
+          "package_name": "com.example.airsale"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeMudodbtej74A4EHosyy0PiJn-XbcDMI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

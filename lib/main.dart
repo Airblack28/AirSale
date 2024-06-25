@@ -40,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
       () => Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const WelcomeScreen(),
+            builder: (context) => WelcomeScreen(),
           )),
     );
   }
@@ -53,7 +53,6 @@ class _SplashScreenState extends State<SplashScreen> {
         alignment: AlignmentDirectional.center,
         children: [
           Positioned(
-            // bottom: 0,
             child: Image.asset("assets/images/bg_screen.png", fit: BoxFit.fitHeight, height: height)
           ),
           Center(

@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class WelcomeScreen extends StatelessWidget {
-  WelcomeScreen({Key? key}) : super(key: key);
+class OtpScreen extends StatelessWidget {
+  OtpScreen({Key? key}) : super(key: key);
 
   TextEditingController phoneController = TextEditingController();
   @override
@@ -26,7 +26,7 @@ class WelcomeScreen extends StatelessWidget {
                   width: width - 40,
                   margin: const EdgeInsetsDirectional.symmetric(vertical: 10),
                   child: Text(
-                    'Enter your phone number',
+                    'Enter the OTP Code',
                     style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w700),
                     textAlign: TextAlign.start,
 
@@ -67,7 +67,7 @@ class WelcomeScreen extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       color: Color.fromARGB(255, 18, 1, 66),
                     ),
-                    child: Text('Get an OTP Code',
+                    child: Text('OTP Verification',
                       style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600, color:const Color.fromARGB(255, 255, 255, 255)),
                       textAlign: TextAlign.center,
                     ),
