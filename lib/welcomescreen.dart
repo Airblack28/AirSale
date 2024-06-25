@@ -1,6 +1,6 @@
+import 'package:airsale/otpscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -74,38 +74,19 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   onTap: () async {
                     await FirebaseAuth.instance.verifyPhoneNumber(
-                      phoneNumber: "+91${phoneController.text}",
+                      phoneNumber: "+91${phoneController.text.toString()}",
                       timeout: const Duration(seconds: 120),
-                      verificationCompleted: (PhoneAuthCredential credential) async {
-                        // ANDROID ONLY!
-
-                        // Sign the user in (or link) with the auto-generated credential
-                        await FirebaseAuth.instance.signInWithCredential(credential);
-                      },
-                      verificationFailed: (FirebaseAuthException e) {
-                        if (e.code == 'invalid-phone-number') {
-                          print('The provided phone number is not valid.');
-                        }
-                      },
+                      verificationCompleted: (PhoneAuthCredential credential) async {},
+                      verificationFailed: (FirebaseAuthException e) {},
                       codeSent: (String verificationId, int? resendToken) async {
-                        // Update the UI - wait for the user to enter the SMS code
-                        String smsCode = 'xxxx';
-
-                        // Create a PhoneAuthCredential with the code
-                        PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: verificationId, smsCode: smsCode);
-
-                        // Sign the user in (or link) with the credential
-                        await FirebaseAuth.instance.signInWithCredential(credential);
+                        // Navigate to the OTP Page for verification
+                        Navigator.push(context,MaterialPageRoute(
+                          builder: (context) => OtpScreen(verificationId: verificationId),
+                        ));
                       },
                       codeAutoRetrievalTimeout: (String verificationId) {},
                     );
                   },
-                  // onTap: () => Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => LoginScreen(),
-                  //   )
-                  // ),
                 ),
                 Container(
                   margin: const EdgeInsetsDirectional.symmetric(vertical: 30),
