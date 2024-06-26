@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:airsale/constants.dart';
 import 'package:airsale/loginscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,7 +8,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class OtpScreen extends StatefulWidget {
   String verificationId;
-  OtpScreen({super.key, required this.verificationId});
+  String phoneNumber;
+  OtpScreen({super.key, required this.verificationId, required this.phoneNumber});
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
@@ -28,56 +30,63 @@ class _OtpScreenState extends State<OtpScreen> {
             child: Image.asset("assets/images/bg_screen.png", fit: BoxFit.fitHeight, height: height)
           ),
           Positioned(
-            top: 50,
+            top: 150,
             child: Column(
               children: [
+                //Intro Text
                 Container(
                   width: width - 40,
-                  margin: const EdgeInsetsDirectional.symmetric(vertical: 10),
+                  margin: const EdgeInsetsDirectional.only(bottom: 10),
                   child: Text(
-                    'Enter the OTP Code',
-                    style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w700),
-                    textAlign: TextAlign.start,
-
+                    "Almost There!",
+                    style: GoogleFonts.poppins(fontSize: 25, fontWeight: FontWeight.w700, letterSpacing: -1),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 Container(
                   width: width - 40,
-                  margin: const EdgeInsetsDirectional.only(bottom: 30),
-                  padding: const EdgeInsetsDirectional.only(end: 30),
+                  margin: const EdgeInsetsDirectional.only(bottom: 40),
                   child: Text(
-                    'This number will be used for communication and personal identification. You will receive an SMS with an 6 Digits code for verification purpose.',
+                    'Insert the 6 Digits Code who have been sent\nby SMS to the phone number ${widget.phoneNumber}.',
                     style: GoogleFonts.poppins(fontSize: 12),
-                    textAlign: TextAlign.start,
+                    textAlign: TextAlign.center,
                   ),
                 ),
+                //Input TextField
                 Container(
                   width: width - 40,
                   margin: const EdgeInsetsDirectional.only(bottom: 10),
                   child: TextField(
                     controller: otpController,
-                    keyboardType: TextInputType.phone,
-                    style: GoogleFonts.poppins(color: const Color(0xFF000000), fontWeight: FontWeight.w500, fontSize: 20),
-                    decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                      hintStyle: GoogleFonts.poppins(color: const Color.fromRGBO(0, 0, 0, 0.2), fontSize: 16),
+                    keyboardType: TextInputType.number,
+                    maxLength: 6,
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.w500, fontSize: 20, letterSpacing: 15),
+                    decoration: const InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                       hintText: "6 Digits OTP",
-                      // prefixStyle: GoogleFonts.poppins(color: const Color(0xFF000000), fontWeight: FontWeight.w700, fontSize: 20),
-                      // prefixText: "+91   ",
                     ),
                   ),
                 ),
+                //OTP Verification Button
                 GestureDetector(
-                  child: Container(
+                  child: otpController.text.length != 6 ?
+                  Container(
                     width: width - 40,
-                    margin: const EdgeInsets.symmetric(vertical: 5),
                     padding: const EdgeInsets.all(20),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      color: Color.fromARGB(255, 18, 1, 66),
+                    child: Text('OTP Verification',
+                      style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w800),
+                      textAlign: TextAlign.center,
+                    ),
+                  ) : Container(
+                    width: width - 40,
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                      color: MediaQuery.of(context).platformBrightness == Brightness.light ? secondaryColorLight : secondaryColorDark,
                     ),
                     child: Text('OTP Verification',
-                      style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600, color:const Color.fromARGB(255, 255, 255, 255)),
+                      style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600, color: MediaQuery.of(context).platformBrightness == Brightness.light ? bgcolorLightTheme : bgcolorDarkTheme),
                       textAlign: TextAlign.center,
                     ),
                   ),

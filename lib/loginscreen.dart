@@ -31,13 +31,11 @@ class LoginScreen extends StatelessWidget {
                     'Ready To Start?',
                     style: GoogleFonts.poppins(fontSize: 25, fontWeight: FontWeight.w700, letterSpacing: -1),
                     textAlign: TextAlign.center,
-
                   ),
                 ),
                 Container(
                   width: width - 40,
                   margin: const EdgeInsetsDirectional.only(bottom: 40),
-                  // padding: const EdgeInsetsDirectional.only(end: 30),
                   child: Text(
                     'This number will be used for communication\nand personal identification. You will receive a\nSMS with 6 Digits Code for verification purpose.',
                     style: GoogleFonts.poppins(fontSize: 12),
@@ -97,7 +95,7 @@ class LoginScreen extends StatelessWidget {
                       codeSent: (String verificationId, int? resendToken) async {
                         // Navigate to the OTP Page for verification
                         Navigator.push(context,MaterialPageRoute(
-                          builder: (context) => OtpScreen(verificationId: verificationId),
+                          builder: (context) => OtpScreen(verificationId: verificationId, phoneNumber: "+91${phoneController.text.toString()}"),
                         ));
                       },
                       // forceResendingToken: 1,

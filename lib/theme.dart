@@ -19,7 +19,7 @@ ThemeData lightThemeData(BuildContext context) {
     ),
     inputDecorationTheme: inputDecorationTheme.copyWith(
       fillColor: primaryColorLight.withOpacity(0.04),
-      hintStyle: GoogleFonts.poppins(color: primaryColorLight.withOpacity(0.3), fontSize: 16)
+      hintStyle: GoogleFonts.poppins(color: primaryColorLight.withOpacity(0.3), fontSize: 16, letterSpacing: 1)
     ),
   );
 }
