@@ -14,11 +14,13 @@ ThemeData lightThemeData(BuildContext context) {
         .apply(bodyColor: primaryColorLight),
     colorScheme: const ColorScheme.light(
       primary: primaryColorLight,
-      secondary: secondaryColor,
+      secondary: secondaryColorLight,
       error: errorColor,
     ),
     inputDecorationTheme: inputDecorationTheme.copyWith(
-        fillColor: inputBgColor),
+      fillColor: primaryColorLight.withOpacity(0.04),
+      hintStyle: GoogleFonts.poppins(color: primaryColorLight.withOpacity(0.3), fontSize: 16)
+    ),
   );
 }
 
@@ -32,11 +34,13 @@ ThemeData darkThemeData(BuildContext context) {
         .apply(bodyColor: primaryColorDark),
     colorScheme: const ColorScheme.dark().copyWith(
       primary: primaryColorDark,
-      secondary: secondaryColor,
+      secondary: secondaryColorDark,
       error: errorColor,
     ),
     inputDecorationTheme: inputDecorationTheme.copyWith(
-        fillColor: primaryColorLight.withOpacity(0.05)),
+      fillColor: primaryColorDark.withOpacity(0.04),
+      hintStyle: GoogleFonts.poppins(color: primaryColorDark.withOpacity(0.3), fontSize: 16),
+    ),
   );
 }
 

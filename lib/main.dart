@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:airsale/theme.dart';
-import 'package:airsale/welcomescreen.dart';
+import 'package:airsale/loginscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
       () => Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => WelcomeScreen(),
+            builder: (context) => LoginScreen(),
           )),
     );
   }

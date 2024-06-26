@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:airsale/WelcomeScreen.dart';
+import 'package:airsale/loginscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -88,7 +88,7 @@ class _OtpScreenState extends State<OtpScreen> {
                       // Sign the user in (or link) with the credential
                       await FirebaseAuth.instance.signInWithCredential(credential).then((value) => Navigator.push(context,
                           MaterialPageRoute(
-                          builder: (context) => WelcomeScreen(),
+                          builder: (context) => LoginScreen(),
                         )
                       ));
                     } catch(ex) {
