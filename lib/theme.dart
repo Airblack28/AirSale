@@ -19,7 +19,7 @@ ThemeData lightThemeData(BuildContext context) {
     ),
     inputDecorationTheme: inputDecorationTheme.copyWith(
       fillColor: primaryColorLight.withOpacity(0.04),
-      hintStyle: GoogleFonts.poppins(color: primaryColorLight.withOpacity(0.3), fontSize: 16, letterSpacing: 1)
+      hintStyle: GoogleFonts.poppins(color: primaryColorLight.withOpacity(0.3), fontSize: 16, letterSpacing: 0)
     ),
   );
 }
@@ -38,8 +38,8 @@ ThemeData darkThemeData(BuildContext context) {
       error: errorColor,
     ),
     inputDecorationTheme: inputDecorationTheme.copyWith(
-      fillColor: primaryColorDark.withOpacity(0.04),
-      hintStyle: GoogleFonts.poppins(color: primaryColorDark.withOpacity(0.3), fontSize: 16),
+      fillColor: primaryColorDark.withOpacity(0.05),
+      hintStyle: GoogleFonts.poppins(color: primaryColorDark.withOpacity(0.3), fontSize: 16, letterSpacing: 0),
     ),
   );
 }

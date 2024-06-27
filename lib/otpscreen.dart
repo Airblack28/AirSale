@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:airsale/constants.dart';
-import 'package:airsale/loginscreen.dart';
+import 'package:airsale/welcomescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,6 +17,7 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
   TextEditingController otpController = TextEditingController();
+  bool loading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +79,8 @@ class _OtpScreenState extends State<OtpScreen> {
                       style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w800),
                       textAlign: TextAlign.center,
                     ),
+                  ) : loading ? Container(
+                    margin: const EdgeInsetsDirectional.only(start: 20, end: 20), padding: const EdgeInsets.all(20),child: CircularProgressIndicator()
                   ) : Container(
                     width: width - 40,
                     padding: const EdgeInsets.all(20),
@@ -90,19 +93,26 @@ class _OtpScreenState extends State<OtpScreen> {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  onTap: () async {
+                  onTap: loading ? null : () async {
+                    setState(() {
+                      loading = true;
+                    });
+
                     try{
                       // Create a PhoneAuthCredential with the code
                       PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: widget.verificationId, smsCode: otpController.text.toString());
                       // Sign the user in (or link) with the credential
                       await FirebaseAuth.instance.signInWithCredential(credential).then((value) => Navigator.push(context,
                           MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
+                          builder: (context) => WelcomeScreen(phoneNumber: widget.verificationId, credential: credential),
                         )
                       ));
                     } catch(ex) {
                       log(ex.toString());
                     }
+                    setState(() {
+                      loading = false;
+                    });
                   },
                 ),
               ],

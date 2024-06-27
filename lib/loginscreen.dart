@@ -4,10 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   TextEditingController phoneController = TextEditingController();
+  bool loading = false;
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -74,6 +81,8 @@ class LoginScreen extends StatelessWidget {
                       style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w800),
                       textAlign: TextAlign.center,
                     ),
+                  ) : loading ? Container(
+                    margin: const EdgeInsetsDirectional.only(start: 20, end: 20), padding: const EdgeInsets.all(20),child: CircularProgressIndicator()
                   ) : Container(
                     width: width - 40,
                     padding: const EdgeInsets.all(20),
@@ -86,7 +95,10 @@ class LoginScreen extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  onTap: () async {
+                  onTap: loading ? null : () async {
+                    setState(() {
+                      loading = true;
+                    });
                     await FirebaseAuth.instance.verifyPhoneNumber(
                       phoneNumber: "+91${phoneController.text.toString()}",
                       timeout: const Duration(seconds: 120),
@@ -98,9 +110,12 @@ class LoginScreen extends StatelessWidget {
                           builder: (context) => OtpScreen(verificationId: verificationId, phoneNumber: "+91${phoneController.text.toString()}"),
                         ));
                       },
-                      // forceResendingToken: 1,
+                      forceResendingToken: 2,
                       codeAutoRetrievalTimeout: (String verificationId) {},
                     );
+                    setState(() {
+                    loading = true;
+                  });
                   },
                 ),
                 //Use Google Account
