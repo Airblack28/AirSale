@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:airsale/constants.dart';
+import 'package:airsale/loginscreen.dart';
 import 'package:airsale/welcomescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -46,13 +47,40 @@ class _OtpScreenState extends State<OtpScreen> {
                 ),
                 Container(
                   width: width - 40,
-                  margin: const EdgeInsetsDirectional.only(bottom: 40),
                   child: Text(
                     'Insert the 6 Digits Code who have been sent\nby SMS to the phone number ${widget.phoneNumber}.',
                     style: GoogleFonts.poppins(fontSize: 12),
                     textAlign: TextAlign.center,
                   ),
                 ),
+                Row(
+                  children: [
+                    Text("If you inserted a Wrong Number, ",
+                      style: GoogleFonts.poppins(fontSize: 12),
+                      textAlign: TextAlign.center,
+                    ),
+                    GestureDetector(
+                      child: Container(
+                        padding: const EdgeInsets.only(bottom: 0),
+                        decoration: BoxDecoration(
+                          border: Border(bottom: BorderSide(style: BorderStyle.solid, color: MediaQuery.of(context).platformBrightness == Brightness.light ? primaryColorLight.withOpacity(0.5) : primaryColorDark.withOpacity(0.3))),
+                        ),
+                        child: Text("Click Here.",
+                          style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w600, color: MediaQuery.of(context).platformBrightness == Brightness.light ? primaryColorLight.withOpacity(0.5) : primaryColorDark.withOpacity(0.4)),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      onTap: () async {
+                        Navigator.pushReplacement(context,
+                              MaterialPageRoute(
+                              builder: (context) => LoginScreen(),
+                          )
+                        );
+                      },
+                    ),
+                  ],
+                ),
+                SizedBox(height: 30),
                 //Input TextField
                 Container(
                   width: width - 40,
@@ -102,7 +130,7 @@ class _OtpScreenState extends State<OtpScreen> {
                       // Create a PhoneAuthCredential with the code
                       PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: widget.verificationId, smsCode: otpController.text.toString());
                       // Sign the user in (or link) with the credential
-                      await FirebaseAuth.instance.signInWithCredential(credential).then((value) => Navigator.push(context,
+                      await FirebaseAuth.instance.signInWithCredential(credential).then((value) => setState(() {loading = false;})).then((value) => Navigator.pushReplacement(context,
                           MaterialPageRoute(
                           builder: (context) => WelcomeScreen(phoneNumber: widget.verificationId, credential: credential),
                         )
@@ -110,9 +138,6 @@ class _OtpScreenState extends State<OtpScreen> {
                     } catch(ex) {
                       log(ex.toString());
                     }
-                    setState(() {
-                      loading = false;
-                    });
                   },
                 ),
               ],

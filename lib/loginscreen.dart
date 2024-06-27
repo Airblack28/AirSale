@@ -104,18 +104,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       timeout: const Duration(seconds: 120),
                       verificationCompleted: (PhoneAuthCredential credential) async {},
                       verificationFailed: (FirebaseAuthException e) {},
+                      forceResendingToken: 2,
+                      codeAutoRetrievalTimeout: (String verificationId) {},
                       codeSent: (String verificationId, int? resendToken) async {
+                        setState(() {loading = true;});
                         // Navigate to the OTP Page for verification
-                        Navigator.push(context,MaterialPageRoute(
+                        Navigator.pushReplacement(context,MaterialPageRoute(
                           builder: (context) => OtpScreen(verificationId: verificationId, phoneNumber: "+91${phoneController.text.toString()}"),
                         ));
                       },
-                      forceResendingToken: 2,
-                      codeAutoRetrievalTimeout: (String verificationId) {},
                     );
-                    setState(() {
-                    loading = true;
-                  });
                   },
                 ),
                 //Use Google Account

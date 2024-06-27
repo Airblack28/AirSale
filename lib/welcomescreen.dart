@@ -162,14 +162,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   user!.updateDisplayName(nameController.text);
                   await Future.delayed(Duration(seconds: 2));
                   FirebaseFirestore db = FirebaseFirestore.instance;
-                  db.collection("users").add(data)
+                  await db.collection("users").add(data)
                     .then((documentSnapshot) => print("Added Data with ID: ${documentSnapshot.id}"))
                     .onError((e, _) => print("Error writing document: $e"))
-                    .then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen())));
-                  Future.delayed(Duration(seconds: 1));
-                  setState(() {
-                    loading = false;
-                  });
+                    .then((value) => setState(() {loading = false;}))
+                    .then((value) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen())));
                 },
               ),
               const Spacer(flex: 1),

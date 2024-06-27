@@ -18,16 +18,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-    double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Stack(
         alignment: AlignmentDirectional.center,
         children: [
-          Positioned(
-            child: Image.asset("assets/images/bg_screen.png", fit: BoxFit.fitHeight, height: height)
-          ),
           Positioned(
             top: 150,
             child: Column(
