@@ -29,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 //Intro Text
                 Container(
-                  width: width - 40,
                   margin: const EdgeInsetsDirectional.only(bottom: 10),
                   child: Text(
                     'Congratulations\n${user?.displayName}',
@@ -52,6 +51,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     margin: const EdgeInsetsDirectional.only(start: 20, end: 20), padding: const EdgeInsets.all(20),child: CircularProgressIndicator()
                   ) : Container(
                     width: width - 40,
+                    // width: 100,
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -63,15 +64,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   onTap: loading ? null : () async {
-                    setState(() {
-                      loading = true;
-                    });
-
-                    FirebaseAuth.instance.signOut().then((value) => Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen())));
-
-                    setState(() {
-                      loading = false;
-                    });
+                    setState(() { loading = true;});
+                    await Future.delayed(Duration(seconds: 1));
+                    // FirebaseAuth.instance.currentUser?.updateDisplayName(null);
+                    FirebaseAuth.instance.signOut().then((value) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen())));
+                    setState(() {loading = false;});
                   },
                 ),
               ],

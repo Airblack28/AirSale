@@ -132,7 +132,7 @@ class _OtpScreenState extends State<OtpScreen> {
                       // Sign the user in (or link) with the credential
                       await FirebaseAuth.instance.signInWithCredential(credential).then((value) => setState(() {loading = false;})).then((value) => Navigator.pushReplacement(context,
                           MaterialPageRoute(
-                          builder: (context) => WelcomeScreen(phoneNumber: widget.verificationId, credential: credential),
+                          builder: (context) => WelcomeScreen(phoneNumber: widget.verificationId),
                         )
                       ));
                     } catch(ex) {

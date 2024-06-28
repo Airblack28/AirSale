@@ -1,3 +1,6 @@
+import 'package:airsale/homescreen.dart';
+import 'package:airsale/welcomescreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:airsale/theme.dart';
 import 'package:airsale/loginscreen.dart';
@@ -17,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'KmrAvatar',
+      title: 'AirSale',
       debugShowCheckedModeBanner: false,
       theme: lightThemeData(context),
       darkTheme: darkThemeData(context),
@@ -39,11 +42,11 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(
-      const Duration(seconds: 10),
+      const Duration(seconds: 5),
       () => Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => LoginScreen(),
+            builder: (context) => FirebaseAuth.instance.currentUser?.uid == null ? LoginScreen() : FirebaseAuth.instance.currentUser?.displayName == null ? WelcomeScreen(phoneNumber: FirebaseAuth.instance.currentUser!.phoneNumber.toString()) : HomeScreen(),
           )),
     );
   }

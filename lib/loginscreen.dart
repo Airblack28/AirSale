@@ -112,6 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.pushReplacement(context,MaterialPageRoute(
                           builder: (context) => OtpScreen(verificationId: verificationId, phoneNumber: "+91${phoneController.text.toString()}"),
                         ));
+                        setState(() {loading = false;});
                       },
                     );
                   },

@@ -8,8 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class WelcomeScreen extends StatefulWidget {
   String phoneNumber;
-  PhoneAuthCredential credential;
-  WelcomeScreen({super.key, required this.phoneNumber, required this.credential});
+  WelcomeScreen({super.key, required this.phoneNumber});
 
   @override
   State<WelcomeScreen> createState() => _WelcomeScreenState();
