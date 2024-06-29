@@ -1,8 +1,10 @@
 import 'package:airsale/constants.dart';
-import 'package:airsale/loginscreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:airsale/Home/menuscreen.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:animations/animations.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -18,7 +20,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Stack(
         alignment: AlignmentDirectional.center,
@@ -46,29 +47,28 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 //Log out Button
-                GestureDetector(
-                  child: loading ? Container(
-                    margin: const EdgeInsetsDirectional.only(start: 20, end: 20), padding: const EdgeInsets.all(20),child: CircularProgressIndicator()
-                  ) : Container(
-                    width: width - 40,
-                    // width: 100,
-                    margin: const EdgeInsets.symmetric(horizontal: 20),
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      color: MediaQuery.of(context).platformBrightness == Brightness.light ? secondaryColorLight : secondaryColorDark,
-                    ),
-                    child: Text('Log Out',
-                      style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600, color: MediaQuery.of(context).platformBrightness == Brightness.light ? bgcolorLightTheme : bgcolorDarkTheme),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  onTap: loading ? null : () async {
-                    setState(() { loading = true;});
-                    await Future.delayed(Duration(seconds: 1));
-                    // FirebaseAuth.instance.currentUser?.updateDisplayName(null);
-                    FirebaseAuth.instance.signOut().then((value) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen())));
-                    setState(() {loading = false;});
+                OpenContainer(
+                  transitionType: ContainerTransitionType.fade,
+                  transitionDuration: const Duration(milliseconds: 500),
+                  openColor: MediaQuery.of(context).platformBrightness == Brightness.light ? bgcolorLightTheme : bgcolorDarkTheme,
+                  openBuilder: (context, _) {
+                    return MenuScreen();
+                  },
+                  closedColor: MediaQuery.of(context).platformBrightness == Brightness.light ? bgcolorLightTheme : bgcolorDarkTheme,
+                  closedElevation: 0,
+                  closedShape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                  closedBuilder: (context, VoidCallback openContainer) {
+                    return GestureDetector(
+                      onTap: openContainer,
+                      child: Container(
+                        padding: const EdgeInsets.all(20),
+                        color: MediaQuery.of(context).platformBrightness == Brightness.light ? secondaryColorLight : secondaryColorDark,
+                        child: Text('Menu',
+                          style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w600, color: MediaQuery.of(context).platformBrightness == Brightness.light ? bgcolorLightTheme : bgcolorDarkTheme),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    );
                   },
                 ),
               ],

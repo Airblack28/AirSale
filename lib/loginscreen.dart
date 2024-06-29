@@ -32,7 +32,6 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 //Intro Text
                 Container(
-                  width: width - 40,
                   margin: const EdgeInsetsDirectional.only(bottom: 10),
                   child: Text(
                     'Ready To Start?',
@@ -41,7 +40,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 Container(
-                  width: width - 40,
                   margin: const EdgeInsetsDirectional.only(bottom: 40),
                   child: Text(
                     'This number will be used for communication\nand personal identification. You will receive a\nSMS with 6 Digits Code for verification purpose.',
@@ -51,8 +49,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 //Input TextField
                 Container(
-                  width: width - 40,
+                  width: width,
                   margin: const EdgeInsetsDirectional.only(bottom: 10),
+                  padding: EdgeInsetsDirectional.symmetric(horizontal: 20),
                   child: TextField(
                     controller: phoneController,
                     keyboardType: TextInputType.phone,
@@ -75,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 GestureDetector(
                   child: phoneController.text.length != 10 ?
                   Container(
-                    width: width - 40,
+                    width: width,
                     padding: const EdgeInsets.all(20),
                     child: Text('Get an OTP Code',
                       style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w800),

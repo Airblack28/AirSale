@@ -22,6 +22,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // double height = MediaQuery.sizeOf(context).height;
+    // var padding = MediaQuery.paddingOf(context);
+    // double newheight = height - padding.top - padding.bottom;
     return Scaffold(
       body: SafeArea(
         child: Center(
