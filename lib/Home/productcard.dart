@@ -1,14 +1,20 @@
 import 'package:airsale/constants.dart';
-import 'package:airsale/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ProductCard extends StatelessWidget {
+  const ProductCard({
+    Key? key,
+    required this.tag,
+  }) : super(key: key);
+
+  final String tag;
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Padding(
-        padding: EdgeInsets.only(left: 20),
+        padding: EdgeInsets.only(right: 20),
         child: SizedBox(
           width: width / 2.5,
           child: GestureDetector(
@@ -28,7 +34,7 @@ class ProductCard extends StatelessWidget {
                           : primaryColorDark.withOpacity(0.95),
                     ),
                     child: Hero(
-                      tag: "Products",
+                      tag: tag,
                       child: Image.asset(
                           "assets/images/Image Popular Product 1.png"),
                     ),
@@ -44,7 +50,6 @@ class ProductCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
-                        // color: kPrimaryColor,
                       ),
                     ),
                     InkWell(
@@ -55,7 +60,6 @@ class ProductCard extends StatelessWidget {
                         height: 30,
                         width: 30,
                         decoration: BoxDecoration(
-                          // color: kSecondaryColor.withOpacity(0.1),
                           shape: BoxShape.circle,
                         ),
                         child: SvgPicture.asset(
@@ -73,45 +77,3 @@ class ProductCard extends StatelessWidget {
     );
   }
 }
-
-class ProductItems {
-  final dynamic link;
-  final String name, instruction;
-  final IconData icon;
-
-  ProductItems(
-      {required this.link,
-      required this.icon,
-      required this.name,
-      required this.instruction});
-}
-
-final ProductItem = [
-  [
-    ProductItems(
-      link: HomeScreen(),
-      // icon: Icons.maps_home_work_sharp,
-      icon: Icons.business_center,
-      name: "Home",
-      instruction: "Look all the Products",
-    ),
-    ProductItems(
-      link: HomeScreen(),
-      icon: Icons.widgets,
-      name: "Products",
-      instruction: "Look all the Products",
-    ),
-    ProductItems(
-      link: HomeScreen(),
-      icon: Icons.favorite,
-      name: "Favourites",
-      instruction: "Look all the commande",
-    ),
-    ProductItems(
-      link: HomeScreen(),
-      icon: Icons.monetization_on,
-      name: "Cart",
-      instruction: "For selected products",
-    ),
-  ],
-];

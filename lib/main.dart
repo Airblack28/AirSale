@@ -1,9 +1,9 @@
-import 'package:airsale/homescreen.dart';
-import 'package:airsale/welcomescreen.dart';
+import 'package:airsale/Home/homescreen.dart';
+import 'package:airsale/Welcome/welcomescreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:airsale/theme.dart';
-import 'package:airsale/loginscreen.dart';
+import 'package:airsale/Welcome/loginscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -47,6 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
           context,
           MaterialPageRoute(
             builder: (context) => FirebaseAuth.instance.currentUser?.uid == null ? LoginScreen() : FirebaseAuth.instance.currentUser?.displayName == null ? WelcomeScreen(phoneNumber: FirebaseAuth.instance.currentUser!.phoneNumber.toString()) : HomeScreen(),
+            // builder: (context) => LoginScreen(),
           )),
     );
   }

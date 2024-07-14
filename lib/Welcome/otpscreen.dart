@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:airsale/constants.dart';
-import 'package:airsale/loginscreen.dart';
-import 'package:airsale/welcomescreen.dart';
+import 'package:airsale/Welcome/loginscreen.dart';
+import 'package:airsale/Welcome/welcomescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
