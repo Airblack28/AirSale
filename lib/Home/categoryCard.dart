@@ -17,10 +17,10 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     // double width = MediaQuery.of(context).size.width;
     return Padding(
-      padding: EdgeInsets.only(right: 20),
+      padding: EdgeInsets.only(right: 10),
       child: Container(
-        width: 290,
-        height: 120,
+        width: 218,
+        height: 90,
         child: GestureDetector(
           onTap: () {},
           child: ClipRRect(
@@ -37,8 +37,8 @@ class CategoryCard extends StatelessWidget {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        Color(0xFF343434).withOpacity(0.65),
-                        Color(0xFF343434).withOpacity(0.05),
+                        MediaQuery.of(context).platformBrightness == Brightness.dark ? Color.fromARGB(255, 16, 16, 16).withOpacity(0.95) : Color(0xFF343434).withOpacity(0.70),
+                        MediaQuery.of(context).platformBrightness == Brightness.dark ? Color.fromARGB(255, 16, 16, 16).withOpacity(0.40) : Color(0xFF343434).withOpacity(0.05),
                       ],
                     ),
                   ),
@@ -55,7 +55,7 @@ class CategoryCard extends StatelessWidget {
                         TextSpan(
                           text: "$category\n",
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

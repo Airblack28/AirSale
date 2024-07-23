@@ -6,74 +6,85 @@ class ProductCard extends StatelessWidget {
   const ProductCard({
     Key? key,
     required this.tag,
+    required this.name,
+    required this.price,
+    required this.image,
   }) : super(key: key);
 
   final String tag;
+  final String name;
+  final String price;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    return Padding(
-        padding: EdgeInsets.only(right: 20),
-        child: SizedBox(
-          width: width / 2.5,
-          child: GestureDetector(
-            onTap: () {},
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return Container(
+      margin: EdgeInsets.only(right: 10),
+      padding: EdgeInsets.symmetric(horizontal: 15),
+      width: width / 2.5,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        color: MediaQuery.of(context).platformBrightness ==
+          Brightness.light
+          ? primaryColorLight.withOpacity(0.05)
+          : primaryColorDark.withOpacity(0.05),
+      ),
+      child: GestureDetector(
+        onTap: () {},
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AspectRatio(
+              aspectRatio: 1.01,
+              child: Container(
+                padding: EdgeInsets.all(10),
+                child: Hero(
+                  tag: tag,
+                  child: Image.asset(image),
+                ),
+              ),
+            ),
+            Text(name,
+              // maxLines: 2,
+              style: TextStyle(
+                fontSize: 13,
+                // color: MediaQuery.of(context).platformBrightness == Brightness.dark ? primaryColorLight:primaryColorDark,
+              )
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AspectRatio(
-                  aspectRatio: 1.02,
+                Text(
+                  price,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    // color: MediaQuery.of(context).platformBrightness == Brightness.dark ? primaryColorLight : primaryColorDark
+                  ),
+                ),
+                InkWell(
+                  borderRadius: BorderRadius.circular(50),
+                  onTap: () {},
                   child: Container(
-                    padding: EdgeInsets.all(20),
+                    padding: EdgeInsets.all(8),
+                    height: 33,
+                    width: 33,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: MediaQuery.of(context).platformBrightness ==
-                              Brightness.light
-                          ? primaryColorLight.withOpacity(0.05)
-                          : primaryColorDark.withOpacity(0.95),
+                      shape: BoxShape.circle,
                     ),
-                    child: Hero(
-                      tag: tag,
-                      child: Image.asset(
-                          "assets/images/Image Popular Product 1.png"),
+                    child: SvgPicture.asset(
+                      "assets/icons/Heart Icon_2.svg",
+                      color: Color(0xFFDBDEE4),
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
-                Text("Wireless Device", maxLines: 2),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "100 USD",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    InkWell(
-                      borderRadius: BorderRadius.circular(50),
-                      onTap: () {},
-                      child: Container(
-                        padding: EdgeInsets.all(8),
-                        height: 30,
-                        width: 30,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        child: SvgPicture.asset(
-                          "assets/icons/Heart Icon_2.svg",
-                          color: Color(0xFFDBDEE4),
-                        ),
-                      ),
-                    ),
-                  ],
-                )
               ],
             ),
-          ),
+            const SizedBox(height: 10),
+          ],
         ),
+      ),
     );
   }
 }

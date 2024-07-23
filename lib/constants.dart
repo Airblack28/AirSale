@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const primaryColorLight = Colors.black;
-const secondaryColorLight = Color.fromARGB(255, 18, 1, 66);
+const secondaryColorLight = Color(0xFF120142);
 const inputBgColor = Color.fromARGB(255, 245, 245, 245);
 const bgcolorLightTheme = Colors.white;
 const warningColor = Color(0xFFF3BB1C);
