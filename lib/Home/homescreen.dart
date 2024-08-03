@@ -356,20 +356,28 @@ class _HomeScreenState extends State<HomeScreen> {
                               String tag = doc['tag'] ?? ''; // Provide a default value if 'tag' is null
                               String name = doc['name'] ?? ''; // Provide a default value if 'name' is null
                               String price = doc['price'] ?? '# USD'; // Provide a default value if 'price' is null
+                              String description = doc['description'] ?? 'Empty'; // Provide a default value if 'description' is null
+                              bool isFavourite = doc['isFavourite'] ?? false; // Provide a default value if 'isFavourite' is null
                               String image = doc['image'] ?? ''; // Provide a default value if 'image' is null
+                              List<String> product_images = (doc['product_images'] as List<dynamic>? ?? []).map((item) => item.toString()).toList(); // Provide a default value if 'images' is null
+                              List<int> product_colors = (doc['product_colors'] as List<dynamic>? ?? []).map((item) => int.parse(item)).toList(); // Provide a default value if 'colors' is null
                               // Return all the product card with their fetch data
                               return ProductCard(
                                 tag: tag,
                                 name: name,
                                 price: price,
+                                description: description,
                                 image: image,
+                                product_images: product_images,
+                                product_colors: product_colors,
+                                isFavourite: isFavourite,
                               );
                             },
                           ),
                         );
                       },
                     ),
-                    
+
                     // Sample Data
                     // ProductCard(tag: "Products1", name: "PS4 Controller", price: "100 USD", image: "assets/images/product-img-01.png"),
                     // ProductCard(tag: "Products2", name: "Nike Zoom IV", price: "120 USD", image: "assets/images/product-img-02.png"),

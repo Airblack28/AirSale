@@ -1,3 +1,4 @@
+import 'package:airsale/Home/detailscreen.dart';
 import 'package:airsale/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,13 +9,21 @@ class ProductCard extends StatelessWidget {
     required this.tag,
     required this.name,
     required this.price,
+    required this.description,
     required this.image,
+    required this.product_images,
+    required this.product_colors,
+    required this.isFavourite,
   }) : super(key: key);
 
   final String tag;
   final String name;
   final String price;
+  final String description;
   final String image;
+  final List<String> product_images;
+  final List<int> product_colors;
+  final bool isFavourite;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +40,20 @@ class ProductCard extends StatelessWidget {
           : primaryColorDark.withOpacity(0.05),
       ),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) =>
+            DetailScreen(
+              tag: tag,
+              name: name,
+              description: description,
+              price: price,
+              image: image,
+              product_images: product_images,
+              product_colors: product_colors,
+              isFavourite: isFavourite)
+            )
+          );
+        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
