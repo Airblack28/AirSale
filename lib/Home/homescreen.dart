@@ -355,7 +355,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               // Access fields using bracket notation safely
                               String tag = doc['tag'] ?? ''; // Provide a default value if 'tag' is null
                               String name = doc['name'] ?? ''; // Provide a default value if 'name' is null
-                              String price = doc['price'] ?? '# USD'; // Provide a default value if 'price' is null
+                              int price = doc['price'] ?? 0; // Provide a default value if 'price' is null
                               String description = doc['description'] ?? 'Empty'; // Provide a default value if 'description' is null
                               bool isFavourite = doc['isFavourite'] ?? false; // Provide a default value if 'isFavourite' is null
                               String image = doc['image'] ?? ''; // Provide a default value if 'image' is null

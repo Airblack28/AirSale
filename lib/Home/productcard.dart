@@ -18,7 +18,7 @@ class ProductCard extends StatelessWidget {
 
   final String tag;
   final String name;
-  final String price;
+  final int price;
   final String description;
   final String image;
   final List<String> product_images;
@@ -78,7 +78,7 @@ class ProductCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  price,
+                  '$price USD',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
