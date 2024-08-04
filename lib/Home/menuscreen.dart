@@ -1,3 +1,4 @@
+import 'package:airsale/Products/productsscreen.dart';
 import 'package:airsale/constants.dart';
 import 'package:airsale/Home/homescreen.dart';
 import 'package:airsale/Welcome/loginscreen.dart';
@@ -163,7 +164,7 @@ final menuItem = [
       instruction: "Look all the Products",
     ),
     MenuItems(
-      link: HomeScreen(),
+      link: Productsscreen(),
       icon: Icons.widgets,
       name: "Products",
       instruction: "Look all the Products",

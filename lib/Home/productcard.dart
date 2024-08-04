@@ -27,38 +27,41 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    return Container(
-      margin: EdgeInsets.only(right: 10),
-      padding: EdgeInsets.symmetric(horizontal: 15),
-      width: width / 2.5,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: MediaQuery.of(context).platformBrightness ==
-          Brightness.light
-          ? primaryColorLight.withOpacity(0.05)
-          : primaryColorDark.withOpacity(0.05),
-      ),
-      child: GestureDetector(
-        onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) =>
-            DetailScreen(
-              tag: tag,
-              name: name,
-              description: description,
-              price: price,
-              image: image,
-              product_images: product_images,
-              product_colors: product_colors,
-              isFavourite: isFavourite)
-            )
-          );
-        },
+    // double width = MediaQuery.of(context).size.width;
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) =>
+          DetailScreen(
+            tag: tag,
+            name: name,
+            description: description,
+            price: price,
+            image: image,
+            product_images: product_images,
+            product_colors: product_colors,
+            isFavourite: isFavourite)
+          )
+        );
+      },
+      child: Container(
+        margin: EdgeInsets.only(right: 10),
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        clipBehavior: Clip.hardEdge,
+        // width: width / 2.5,
+        width: 170,
+        height: 200,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: MediaQuery.of(context).platformBrightness ==
+            Brightness.light
+            ? primaryColorLight.withOpacity(0.05)
+            : primaryColorDark.withOpacity(0.05),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AspectRatio(
-              aspectRatio: 1.01,
+              aspectRatio: 1.2,
               child: Container(
                 padding: EdgeInsets.all(10),
                 child: Hero(
@@ -68,7 +71,6 @@ class ProductCard extends StatelessWidget {
               ),
             ),
             Text(name,
-              // maxLines: 2,
               style: TextStyle(
                 fontSize: 13,
                 // color: MediaQuery.of(context).platformBrightness == Brightness.dark ? primaryColorLight:primaryColorDark,
@@ -103,7 +105,6 @@ class ProductCard extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 10),
           ],
         ),
       ),

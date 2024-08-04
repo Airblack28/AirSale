@@ -257,7 +257,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       numOfBrands: 24,
                       press: () {},
                     ),
-                    SizedBox(width: 20),
+                    SizedBox(width: 10),
                   ]),
                 ),
               ),
@@ -344,8 +344,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         // Process the data
                         List<DocumentSnapshot> documents = snapshot.data!.docs;
                         return Container(
-                          width: ((width / 2.5) + 10) * documents.length + 1,
-                          height: 200,
+                          width: (170 + 10) * documents.length + 1,
+                          height: 185,
+                          // color: Colors.blue,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemCount: documents.length,
